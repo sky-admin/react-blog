@@ -1,3 +1,19 @@
+# React-Blog
+
+`用React编写一个Blog界面`
+
+## 开发说明
+
+该项目是springboot-blog的配套项目，为springboot-blog提供界面。需要用户自备docker、node。
+
+克隆本项目后，在项目目录下输入`npm i`安装依赖
+
+完成后再输入`git clone https://github.com/sky-admin/springboot-blog.git`,拉取后端代码到本地。
+
+再输入`docker-compose up`，等待四个容器启动完毕，即可输入`localhost`查看效果。
+
+## Create-React-App说明部分
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
