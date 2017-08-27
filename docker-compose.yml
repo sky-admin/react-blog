@@ -1,0 +1,41 @@
+version: "3.2"
+
+services:
+  node:
+    build: .
+    volumes:
+      - .:/data
+    command:
+      npm start
+
+  nginx:
+    image: nginx
+    links:
+      - web
+      - node
+    ports:
+      - "80:80"
+    volumes:
+      - ./mysite:/etc/nginx/conf.d/mysite
+    command: >
+      bash -c "
+        rm -rf /etc/nginx/conf.d/default.conf &&
+        cp /etc/nginx/conf.d/mysite/mysite.conf /etc/nginx/conf.d &&
+        mv /etc/nginx/conf.d/mysite.conf /etc/nginx/conf.d/default.conf &&
+        nginx -g 'daemon off;'
+      "
+
+  web:
+      image: skyadmin/springweb
+      links:
+        - db
+      volumes:
+        - ./springboot-blog:/data
+        - ~/.m2:/root/.m2
+      command: mvn spring-boot:run
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: demo
+      MYSQL_ROOT_PASSWORD: demo
