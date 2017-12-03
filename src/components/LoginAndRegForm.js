@@ -1,32 +1,34 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import {withStyles} from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import axios from 'axios';
 
 const styles = theme => ({
     container: {
-        display: 'flex',
-        flexWrap: 'wrap',
+        textAlign: 'center'
     },
     textField: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        width: 200,
+        width: 400,
+    },
+    button: {
+        marginTop: 40
     },
 });
 
 class TextFields extends Component {
 
-    handleLogin() {
-        console.log(123);
+    props
+
+    handleLogin = () => {
         axios.post('/api/login', {})
-    }
+    };
 
     render() {
         const classes = this.props.classes;
-
         return (
             <div className={classes.container}>
                 <TextField
@@ -37,6 +39,7 @@ class TextFields extends Component {
                     autoComplete="current-password"
                     margin="normal"
                 />
+                <br/>
                 <TextField
                     id="password"
                     label="Password"
@@ -45,9 +48,8 @@ class TextFields extends Component {
                     autoComplete="current-password"
                     margin="normal"
                 />
-                <div>
-                    <Button raised color="primary" className={classes.button} onClick={this.handleLogin}>登录</Button>
-                </div>
+                <br/>
+                <Button raised color="primary" className={classes.button} onClick={this.handleLogin}>登录</Button>
             </div>
         );
     }

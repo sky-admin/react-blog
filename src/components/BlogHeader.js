@@ -2,46 +2,44 @@
  * Created by lhy95 on 2017/8/26.
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
+import React, {Component} from 'react';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import {withRouter} from 'react-router-dom';
 
-const styles = {
-    root: {
-        width: '100%',
-    },
-    flex: {
-        flex: 1,
-    },
-};
+class BlogHeader extends Component {
 
-function ButtonAppBar(props) {
-    const classes = props.classes;
-    return (
-        <div className={classes.root}>
+    state = {
+        name: 'Login'
+    };
+
+    handleClick = () => {
+        this.props.history.push('/login')
+    };
+
+    toHome = () => {
+        this.props.history.push('/')
+    };
+
+    render() {
+        return (
             <AppBar position="static">
                 <Toolbar>
                     <IconButton color="contrast" aria-label="Menu">
                         <MenuIcon/>
                     </IconButton>
-                    <Typography type="title" color="inherit" className={classes.flex}>
+                    <Typography onClick={this.toHome} type="title" color="inherit">
                         Spring Blog
                     </Typography>
-                    <Button color="contrast">Login</Button>
+                    <Button color="contrast" onClick={this.handleClick}>{this.state.name}</Button>
                 </Toolbar>
             </AppBar>
-        </div>
-    );
+        );
+    }
 }
 
-ButtonAppBar.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ButtonAppBar);
+export default withRouter(BlogHeader);
