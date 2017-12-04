@@ -21,10 +21,19 @@ const styles = theme => ({
 
 class TextFields extends Component {
 
-    props
+    state = {
+        username: '',
+        password: '',
+    };
 
-    handleLogin = () => {
-        axios.post('/api/login', {})
+    handleChange = name => event => {
+        this.setState({[name]: event.target.value})
+    };
+
+    handleClick = () => {
+        const params = {username: this.state.username, password: this.state.password};
+        console.log(params)
+        // axios.post('/api/login', {})
     };
 
     render() {
@@ -38,6 +47,8 @@ class TextFields extends Component {
                     type="text"
                     autoComplete="current-password"
                     margin="normal"
+                    value={this.state.username}
+                    onChange={this.handleChange('username')}
                 />
                 <br/>
                 <TextField
@@ -47,9 +58,11 @@ class TextFields extends Component {
                     type="password"
                     autoComplete="current-password"
                     margin="normal"
+                    value={this.state.password}
+                    onChange={this.handleChange('password')}
                 />
                 <br/>
-                <Button raised color="primary" className={classes.button} onClick={this.handleLogin}>登录</Button>
+                <Button raised color="primary" className={classes.button} onClick={this.handleClick}>{}</Button>
             </div>
         );
     }
