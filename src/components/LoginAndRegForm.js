@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import axios from 'axios';
+import {Link} from 'react-router-dom';
+// import axios from 'axios';
 
 const styles = theme => ({
     container: {
@@ -16,6 +17,11 @@ const styles = theme => ({
     },
     button: {
         marginTop: 40
+    },
+    link: {
+        fontSize: 14,
+        marginTop: 10,
+        display: 'inline-block'
     },
 });
 
@@ -36,8 +42,16 @@ class TextFields extends Component {
         // axios.post('/api/login', {})
     };
 
+    getButtonName = () => { return this.props.usage === 'login' ? '登录' : '注册' };
+    getLinkName = () => { return this.props.usage === 'login' ? '没有账户，立即注册' : '已有账户，立即登录' };
+    getLinkTarget = () => { return this.props.usage === 'login' ? '/reg' : '/login' }
+
     render() {
         const classes = this.props.classes;
+        const buttonName = this.getButtonName();
+        const linkName = this.getLinkName();
+        const linkTarget = this.getLinkTarget();
+
         return (
             <div className={classes.container}>
                 <TextField
@@ -62,7 +76,9 @@ class TextFields extends Component {
                     onChange={this.handleChange('password')}
                 />
                 <br/>
-                <Button raised color="primary" className={classes.button} onClick={this.handleClick}>{}</Button>
+                <Button raised color="primary" className={classes.button} onClick={this.handleClick}>{buttonName}</Button>
+                <br/>
+                <Link className={classes.link} to={linkTarget}>{linkName}</Link>
             </div>
         );
     }

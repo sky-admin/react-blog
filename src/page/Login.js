@@ -4,7 +4,7 @@ import {withStyles} from 'material-ui/styles';
 
 const styles = theme => ({
     container: {
-        marginTop: 200,
+        marginTop: 150,
         textAlign: 'center'
     },
 });
@@ -15,7 +15,9 @@ class Login extends Component {
         return (
             <div className={classes.container}>
                 <h1>Login</h1>
-                <LoginForm></LoginForm>
+                <LoginForm
+                    usage='login'
+                />
             </div>
         );
     }
