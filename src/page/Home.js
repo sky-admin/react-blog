@@ -1,14 +1,24 @@
 import React, {Component} from 'react';
+import ArticlePreview from '../components/ArticlePreview';
+import {withStyles} from 'material-ui/styles';
+
+const styles = theme => ({
+    container: {
+        padding: '50px 10%',
+    },
+});
 
 class Home extends Component {
+
     render() {
+        const classes = this.props.classes;
+
         return (
-            <div>
-                <h1>这里是标题</h1>
-                <p>这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！</p>
+            <div className={classes.container}>
+                <ArticlePreview/>
             </div>
         );
     }
 }
 
-export default Home;
+export default withStyles(styles)(Home);
