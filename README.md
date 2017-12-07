@@ -12,6 +12,8 @@
 
 再输入`docker-compose up`，等待四个容器启动完毕，即可输入`localhost`查看效果。
 
+***注意：Win10用户如果通过docker for Windows这个基于Hyper-V来做的docker，会出现改动react项目文件node容器无法检测到的问题，详情和[解决方案见此](https://www.lihuanyu.com/docker/docker-for-windows%E4%B8%8D%E5%93%8D%E5%BA%94react%E9%A1%B9%E7%9B%AE%E6%94%B9%E5%8F%98%E5%90%8E%E7%9A%84%E9%87%8D%E7%BC%96%E8%AF%91/)。***
+
 ## Create-React-App说明部分
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
