@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import {withStyles} from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import {Link} from 'react-router-dom';
-// import axios from 'axios';
+import {Link, withRouter} from 'react-router-dom';
+import axios from 'axios';
+import qs from 'qs';
 
 const styles = theme => ({
     container: {
@@ -36,15 +37,24 @@ class TextFields extends Component {
         this.setState({[name]: event.target.value})
     };
 
-    handleClick = () => {
+    handleClick = async () => {
         const params = {username: this.state.username, password: this.state.password};
-        console.log(params)
-        // axios.post('/api/login', {})
+        const url = 'api/' + this.props.usage;
+        const res = await axios.post(url, qs.stringify(params));
+        if (res.data.code === 0) {
+            if (this.props.usage === 'login') {
+                alert('登录成功！');
+                this.props.history.push('/')
+            } else {
+                alert('注册成功，请登录！');
+                this.props.history.push('/login')
+            }
+        }
     };
 
     getButtonName = () => { return this.props.usage === 'login' ? '登录' : '注册' };
     getLinkName = () => { return this.props.usage === 'login' ? '没有账户，立即注册' : '已有账户，立即登录' };
-    getLinkTarget = () => { return this.props.usage === 'login' ? '/reg' : '/login' }
+    getLinkTarget = () => { return this.props.usage === 'login' ? '/reg' : '/login' };
 
     render() {
         const classes = this.props.classes;
@@ -88,4 +98,4 @@ TextFields.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TextFields);
+export default withStyles(styles)(withRouter(TextFields));
