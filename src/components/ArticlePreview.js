@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {withStyles} from 'material-ui/styles';
+import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 
 const styles = theme => ({
     container: {
@@ -10,13 +12,32 @@ const styles = theme => ({
 
 class ArticlePreview extends Component {
 
+    constructor(props) {
+        super(props);
+        axios.get('api/articles').then(res => {
+            console.log(res.data.content);
+            this.setState({articles: res.data.content});
+        });
+    }
+
+    state = {
+        articles: [],
+    };
+
     render() {
         const classes = this.props.classes;
 
+        console.log(this.state.articles);
+        const listItems = this.state.articles.map((article) =>
+            <div>
+                <h1>{article.title}</h1>
+                <ReactMarkdown source={article.content}/>
+            </div>
+        );
+
         return (
             <div className={classes.container}>
-                <h1>这里是标题</h1>
-                <p>这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！这里是内容！</p>
+                {listItems}
             </div>
         );
     }

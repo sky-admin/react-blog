@@ -69,7 +69,7 @@ class TextFields extends Component {
                     label="Username"
                     className={classes.textField}
                     type="text"
-                    autoComplete="current-password"
+                    autoComplete="current-username"
                     margin="normal"
                     value={this.state.username}
                     onChange={this.handleChange('username')}
