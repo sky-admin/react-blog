@@ -4,7 +4,7 @@ import BlogHeader from './components/BlogHeader';
 import Home from './page/Home';
 import Login from './page/Login';
 import Reg from './page/Reg';
-import './App.css';
+import Edit from './page/Edit';
 
 class App extends Component {
     render() {
@@ -15,6 +15,7 @@ class App extends Component {
                     <Route exact path="/" component={Home}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/reg" component={Reg}/>
+                    <Route path="/edit" component={Edit}/>
                 </div>
             </Router>
         );
